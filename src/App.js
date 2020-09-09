@@ -9,20 +9,48 @@ import { DropDownList } from '@progress/kendo-react-dropdowns';
 import { Window } from '@progress/kendo-react-dialogs';
 
 class App extends Component {
-
-  state = {
-    dropdownlistCategory: null
+  constructor(props) {
+    super(props);
+    
+    this.state = {
+      dropdownlistCategory: null,
+      gridDataState: {
+        sort: [
+          { field: "ProductName", dir: "asc" }
+        ],
+        page: { skip: 0, take: 10 }
+      },
+      windowVisible: false,
+      gridClickedRow: {}
+    }
   }
-
+  
   handleDropDownChange = (e) => {
     this.setState({
       dropdownlistCategory: e.target.value.CategoryID
     });
   }
-
+  
+  handleGridDataStateChange = (e) => {
+    this.setState({gridDataState: e.data});
+  }
+  
+  handleGridRowClick = (e) => {
+    this.setState({
+        windowVisible: true,
+        gridClickedRow: e.dataItem
+    });
+  }
+  
+  closeWindow = (e) => {
+    this.setState({
+        windowVisible: false
+    });
+  }
+  
   render() {
     return (
-      <div className="App">
+      <div className="kendo-react-getting-started">
         <h1>Hello KendoReact!</h1>
         <p>
           <DropDownList
@@ -34,7 +62,48 @@ class App extends Component {
             />
           &nbsp; Selected category ID: <strong>{this.state.dropdownlistCategory}</strong>
         </p>
+        
+        <Grid
+          data={process(products, this.state.gridDataState)}
+          pageable={true}
+          sortable={true}
+          {...this.state.gridDataState}
+          onDataStateChange={this.handleGridDataStateChange}
+          style={{ height: "400px" }}
+          onRowClick={this.handleGridRowClick}>
+          <GridColumn field="ProductName" title="Product Name" />
+          <GridColumn field="UnitPrice" title="Price" format="{0:c}" />
+          <GridColumn field="UnitsInStock" title="Units in Stock" />
+          <GridColumn field="Discontinued" cell={checkboxColumn} />
+        </Grid>
+        
+        {this.state.windowVisible &&
+          <Window
+            title="Product Details"
+            onClose={this.closeWindow}
+            height={250}>
+            <dl>
+              <dt>Product Name</dt>
+              <dd>{this.state.gridClickedRow.ProductName}</dd>
+              <dt>Product ID</dt>
+              <dd>{this.state.gridClickedRow.ProductID}</dd>
+              <dt>Quantity per Unit</dt>
+              <dd>{this.state.gridClickedRow.QuantityPerUnit}</dd>
+            </dl>
+          </Window>
+        }
+        
       </div>
+    );
+  }
+}
+
+class checkboxColumn extends Component {
+  render() {
+    return (
+        <td>
+          <input type="checkbox" checked={this.props.dataItem[this.props.field]} disabled="disabled" />
+        </td>
     );
   }
 }
