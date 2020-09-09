@@ -6,6 +6,7 @@
     "@progress/kendo-data-query": "^1.5.4",
     "@progress/kendo-drawing": "^1.9.1",
     "@progress/kendo-react-animation": "^3.16.0",
+    "@progress/kendo-react-charts": "^3.16.0",
     "@progress/kendo-react-data-tools": "^3.16.0",
     "@progress/kendo-react-dateinputs": "^3.16.0",
     "@progress/kendo-react-dialogs": "^3.16.0",
@@ -17,6 +18,7 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
+    "hammerjs": "^2.0.8",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.3"

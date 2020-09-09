@@ -1,5 +1,6 @@
 ## Tutorial
 - [Get Started with KendoReact](https://www.telerik.com/kendo-react-ui/getting-started/)
+- [KendoReact Docs & Demos](https://www.telerik.com/kendo-react-ui/components/charts/get-started/)
 
 ## Git
 - [Get Started with KendoReact](https://github.com/telerik/kendo-react-getting-started/)
@@ -147,4 +148,14 @@ import { process } from '@progress/kendo-data-query';
 import { Grid, GridColumn } from '@progress/kendo-react-grid';
 import { DropDownList } from '@progress/kendo-react-dropdowns';
 import { Window } from '@progress/kendo-react-dialogs';
+```
+
+# kendo components
+
+## Chart
+
+### Installation
+
+```
+npm install --save @progress/kendo-react-charts @progress/kendo-drawing @progress/kendo-react-intl hammerjs
 ```

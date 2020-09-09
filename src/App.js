@@ -7,6 +7,7 @@ import { process } from '@progress/kendo-data-query';
 import { Grid, GridColumn } from '@progress/kendo-react-grid';
 import { DropDownList } from '@progress/kendo-react-dropdowns';
 import { Window } from '@progress/kendo-react-dialogs';
+// import { Chart } from "pages";
 
 class App extends Component {
   constructor(props) {
