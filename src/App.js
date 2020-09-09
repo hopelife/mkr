@@ -1,26 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
+import '@progress/kendo-theme-default/dist/all.css';
 import './App.css';
+import categories from './categories.json';
+import products from './products.json';
+import { process } from '@progress/kendo-data-query';
+import { Grid, GridColumn } from '@progress/kendo-react-grid';
+import { DropDownList } from '@progress/kendo-react-dropdowns';
+import { Window } from '@progress/kendo-react-dialogs';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+class App extends Component {
+
+  state = {
+    dropdownlistCategory: null
+  }
+
+  handleDropDownChange = (e) => {
+    this.setState({
+      dropdownlistCategory: e.target.value.CategoryID
+    });
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <h1>Hello KendoReact!</h1>
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          <DropDownList
+            data={categories}
+            dataItemKey="CategoryID"
+            textField="CategoryName"
+            defaultItem={{CategoryID: null, CategoryName: "Product categories"}}
+            onChange={this.handleDropDownChange}
+            />
+          &nbsp; Selected category ID: <strong>{this.state.dropdownlistCategory}</strong>
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+      </div>
+    );
+  }
 }
 
 export default App;
